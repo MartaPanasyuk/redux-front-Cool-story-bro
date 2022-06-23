@@ -23,6 +23,11 @@ export default function Navigation() {
         <Nav style={{ width: "100%" }} fill>
           <NavbarItem path="/" linkText="Home" />
           <NavbarItem path="/other" linkText="Other" />
+          {token ? (
+            <NavbarItem path="/spaces/me" linkText="My Space" />
+          ) : (
+            <div></div>
+          )}
           {loginLogoutControls}
         </Nav>
       </Navbar.Collapse>

@@ -15,6 +15,7 @@ import HeroBanner from "./components/HeroBanner";
 import HomePage from "./pages/HomePage";
 import SpaceDetails from "./pages/SpaceDetails";
 import { fetchSpaces } from "./store/space/thunks";
+import MySpace from "./pages/MySpace";
 const Other = () => (
   <HeroBanner>
     <h1>Other</h1>
@@ -42,6 +43,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<HomePage />} />
         <Route exact path="/spaces/:id" element={<SpaceDetails />} />
+        <Route exact path="/spaces/me" element={<MySpace />} />
         <Route path="/other" element={<Other />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />

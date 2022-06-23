@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  list: [] || null,
-  details: null || {},
+  list: [],
+  details: null,
 };
 
 export const spaceSlice = createSlice({
