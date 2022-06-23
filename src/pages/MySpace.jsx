@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { selectUser } from "../store/user/selectors";
 import { getUserWithStoredToken, deleteStories } from "../store/user/actions";
+import StoryForm from "../components/StoryForm";
 
 export default function MySpace() {
   const dispatch = useDispatch();
@@ -22,10 +23,11 @@ export default function MySpace() {
   //console.log("user", user);
   return (
     <div>
-      <h2>MySpace</h2> <h2>Hi {user.name} !</h2>
-      <button>Post a cool story bro</button>
+      <h2>Hi {user.name} ! Welcome in Your Space</h2>
+      <StoryForm />
       <div>
         <h3>{user.space.title}</h3>
+        <p>{user.space.description}</p>
         {user.space.stories ? (
           user.space.stories.map((str) => (
             <div>

@@ -121,7 +121,6 @@ export const getUserWithStoredToken = () => {
 export const deleteStories = (storyId) => async (dispatch, getState) => {
   try {
     const response = await axios.delete(`${apiUrl}/stories/${storyId}`);
-    const res = response.data;
     console.log(response.data);
     dispatch(deleteStory(storyId));
   } catch (e) {

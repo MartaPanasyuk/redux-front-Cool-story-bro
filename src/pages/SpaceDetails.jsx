@@ -43,8 +43,8 @@ export default function SpaceDetails() {
             color: spaceDetails.color,
           }}
         >
-          {" "}
-          <h2>{spaceDetails.title}</h2> <p>{spaceDetails.description} </p>{" "}
+          <h2>{spaceDetails.title}</h2>
+          <p>{spaceDetails.description}</p>
         </div>
         <div>
           {sortedStories.map((story) => (
