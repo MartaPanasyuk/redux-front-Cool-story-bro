@@ -1,20 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { selectSpace } from "../store/space/selectors";
-import { fetchSpaces } from "../store/space/thunks";
+import { useSelector } from "react-redux";
+import { selectSpaces } from "../store/space/selectors";
 
 export default function HomePage() {
-  const spaces = useSelector(selectSpace);
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    // thunk to fetch all posts
-    dispatch(fetchSpaces());
-  }, [dispatch]); // what I need to put here?
-  console.log("what is my spaces", spaces);
+  const spaces = useSelector(selectSpaces);
 
   return (
     <div>
@@ -32,7 +22,7 @@ export default function HomePage() {
               <h3>{space.title}</h3>
               <p>{space.description}</p>
               <Link
-                to={`/space/${space.id}`}
+                to={`/spaces/${space.id}`}
                 style={{ backgroundColor: "#C199AE" }}
               >
                 {" "}
