@@ -3,7 +3,7 @@ import axios from "axios";
 import { selectToken } from "./selectors";
 import { appLoading, appDoneLoading, setMessage } from "../appState/slice";
 import { showMessageWithTimeout } from "../appState/actions";
-import { loginSuccess, logOut, tokenStillValid } from "./slice";
+import { loginSuccess, logOut, tokenStillValid, deleteStory } from "./slice";
 
 export const signUp = (name, email, password) => {
   return async (dispatch, getState) => {
@@ -115,4 +115,16 @@ export const getUserWithStoredToken = () => {
       dispatch(appDoneLoading());
     }
   };
+};
+
+// Delete Stories
+export const deleteStories = (storyId) => async (dispatch, getState) => {
+  try {
+    const response = await axios.delete(`${apiUrl}/stories/${storyId}`);
+    const res = response.data;
+    console.log(response.data);
+    dispatch(deleteStory(storyId));
+  } catch (e) {
+    console.log(e.message);
+  }
 };

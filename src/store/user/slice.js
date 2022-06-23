@@ -5,6 +5,27 @@ const initialState = {
   profile: null,
 };
 
+/*
+/*
+{
+  profile: {
+    createdAt: "2022-06-23T09:12:56.976Z"
+    email: "test@test.com"
+    id: 1
+    name: "testuser"
+    password: "$2b$10$rp9h8PoYunRkXj2pds.ODuYOmM90mREtUrBWVp4MOo8AoqWci.J.K"
+    space: {
+      backgroundColor: "#008000"
+      color: "#ffffff"
+      createdAt: "2022-06-23T09:12:57.070Z"
+      description: "I got a cat from shelter. She is nice, but overweight. "
+      id: 1
+      stories: (2) [{…}, {…}]
+    }
+  }
+}
+*/
+
 export const userSlice = createSlice({
   name: "user",
   initialState,
@@ -22,9 +43,17 @@ export const userSlice = createSlice({
     tokenStillValid: (state, action) => {
       state.profile = action.payload.user;
     },
+    deleteStory: (state, action) => {
+      // I have stories inside my details
+      // my action.payload = id
+      const toDelete = action.payload;
+      const storyArray = state.profile.space.stories;
+      state.profile.space.stories = storyArray.filter((s) => s.id !== toDelete);
+    },
   },
 });
 
-export const { loginSuccess, logOut, tokenStillValid } = userSlice.actions;
+export const { loginSuccess, logOut, tokenStillValid, deleteStory } =
+  userSlice.actions;
 
 export default userSlice.reducer;

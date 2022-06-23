@@ -52,7 +52,6 @@ export default function SpaceDetails() {
               <h2>{story.name}</h2>
               <p>{story.content}</p>
               <img src={story.imageUrl} alt="story" />
-              <button>Delete story</button>
             </div>
           ))}
         </div>
