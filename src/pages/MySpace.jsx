@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { selectUser } from "../store/user/selectors";
 import { getUserWithStoredToken, deleteStories } from "../store/user/actions";
 import StoryForm from "../components/StoryForm";
+import EditProfileForm from "../components/EditProfileForm";
 
 export default function MySpace() {
   const dispatch = useDispatch();
@@ -25,7 +26,15 @@ export default function MySpace() {
     <div>
       <h2>Hi {user.name} ! Welcome in Your Space</h2>
       <StoryForm />
-      <div key={user.space.title}>
+      <h2>Hey, you can edit your space here!</h2>
+      <EditProfileForm />
+      <div
+        style={{
+          backgroundColor: user.space.backgroundColor,
+          color: user.space.color,
+        }}
+        key={user.space.title}
+      >
         <h3>{user.space.title}</h3>
         <p>{user.space.description}</p>
         {user.space.stories ? (
