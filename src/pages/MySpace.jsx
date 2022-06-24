@@ -25,7 +25,7 @@ export default function MySpace() {
     <div>
       <h2>Hi {user.name} ! Welcome in Your Space</h2>
       <StoryForm />
-      <div>
+      <div key={user.space.title}>
         <h3>{user.space.title}</h3>
         <p>{user.space.description}</p>
         {user.space.stories ? (

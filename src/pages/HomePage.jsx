@@ -17,7 +17,7 @@ export default function HomePage() {
                 backgroundColor: space.backgroundColor,
                 color: space.color,
               }}
-              key={space.id}
+              key={space.title}
             >
               <h3>{space.title}</h3>
               <p>{space.description}</p>

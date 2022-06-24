@@ -51,13 +51,21 @@ export const userSlice = createSlice({
       state.profile.space.stories = storyArray.filter((s) => s.id !== toDelete);
     },
 
-    addingNewStories,
+    addingNewStories: (state, action) => {
+      state.profile.space.stories = [
+        ...state.profile.space.stories,
+        action.payload,
+      ];
+    },
   },
 });
 
-//state.user.profile.state = action.payload, action.payload is the space object with its stories
-
-export const { loginSuccess, logOut, tokenStillValid, deleteStory } =
-  userSlice.actions;
+export const {
+  loginSuccess,
+  logOut,
+  tokenStillValid,
+  deleteStory,
+  addingNewStories,
+} = userSlice.actions;
 
 export default userSlice.reducer;

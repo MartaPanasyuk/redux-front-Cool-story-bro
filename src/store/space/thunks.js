@@ -1,5 +1,6 @@
 import axios from "axios";
 import { postsFetched, spaceDetailsFatched } from "../space/slice";
+import { addingNewStories } from "../user/slice";
 
 const API_URL = `http://localhost:4000`;
 
@@ -40,8 +41,8 @@ export const postNewStory =
         { name: name, content: content, imageUrl: imageUrl },
         { headers: { Authorization: `Bearer ${token}` } }
       );
-      console.log("response", response);
-      //dispatch(spaceDetailsFatched(res)); // need to create a new action to save all this data
+      //console.log("response", response.data);
+      dispatch(addingNewStories(response.data));
     } catch (e) {
       console.log(e.message);
     }
