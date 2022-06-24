@@ -20,7 +20,7 @@ const initialState = {
       createdAt: "2022-06-23T09:12:57.070Z"
       description: "I got a cat from shelter. She is nice, but overweight. "
       id: 1
-      stories: (2) [{…}, {…}]
+      stories: (2) [{…}, {…}, {new story}]
     }
   }
 }
@@ -52,6 +52,8 @@ export const userSlice = createSlice({
     },
   },
 });
+
+//state.user.profile.state = action.payload, action.payload is the space object with its stories
 
 export const { loginSuccess, logOut, tokenStillValid, deleteStory } =
   userSlice.actions;

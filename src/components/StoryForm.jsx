@@ -1,7 +1,10 @@
 import React from "react";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { postNewStory } from "../store/space/thunks";
 
 export default function StoryForm() {
+  const dispatch = useDispatch();
   const [showForm, setShowForm] = useState(false);
   const [name, setName] = useState("");
   const [content, setContent] = useState("");
@@ -9,6 +12,7 @@ export default function StoryForm() {
 
   const onFormSubmit = (e) => {
     e.preventDefault();
+    dispatch(postNewStory(name, content, imageUrl));
   };
 
   return (
@@ -35,7 +39,7 @@ export default function StoryForm() {
             <div>
               <label>Image url</label>
               <input
-                type="image"
+                type="text"
                 value={imageUrl}
                 alt="st"
                 onChange={(e) => setImageUrl(e.target.value)}
