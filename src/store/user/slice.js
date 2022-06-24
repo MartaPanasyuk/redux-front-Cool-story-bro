@@ -57,6 +57,20 @@ export const userSlice = createSlice({
         action.payload,
       ];
     },
+    updateSpace: (state, action) => {
+      const updatedSpace = action.payload;
+
+      // if I would have sent the space WITH the stories
+      // then it's just like this, put in the new space
+      // state.profile.space = updateSpace;
+
+      // Since I'm sending ONLY the space, I need to keep
+      // the stories that I already have.
+      state.profile.space = {
+        ...updatedSpace,
+        stories: state.profile.space.stories,
+      };
+    },
   },
 });
 
@@ -66,6 +80,7 @@ export const {
   tokenStillValid,
   deleteStory,
   addingNewStories,
+  updateSpace,
 } = userSlice.actions;
 
 export default userSlice.reducer;

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { postsFetched, spaceDetailsFatched } from "../space/slice";
-import { addingNewStories } from "../user/slice";
+import { addingNewStories, updateSpace } from "../user/slice";
 
 const API_URL = `http://localhost:4000`;
 
@@ -63,8 +63,9 @@ export const updateNewSpace =
         },
         { headers: { Authorization: `Bearer ${token}` } }
       );
-      //console.log("response", response.data);
-      dispatch();
+      console.log("response", response.data.space);
+      dispatch(updateSpace(response.data.space));
+      // dispatch(getUserWithStoredToken());
     } catch (e) {
       console.log(e.message);
     }

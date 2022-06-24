@@ -41,7 +41,7 @@ export default function EditProfileForm() {
             <div>
               <label>Background</label>
               <input
-                type="text"
+                type="color"
                 value={background}
                 alt="st"
                 onChange={(e) => setBackground(e.target.value)}
@@ -50,7 +50,7 @@ export default function EditProfileForm() {
             <div>
               <label>Text Color</label>
               <input
-                type="text"
+                type="color"
                 value={textcolor}
                 alt="st"
                 onChange={(e) => setTextcolor(e.target.value)}
