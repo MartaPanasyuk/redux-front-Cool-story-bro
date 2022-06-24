@@ -13,6 +13,9 @@ export default function StoryForm() {
   const onFormSubmit = (e) => {
     e.preventDefault();
     dispatch(postNewStory(name, content, image));
+    setName("");
+    setContent("");
+    setImage("");
   };
 
   return (

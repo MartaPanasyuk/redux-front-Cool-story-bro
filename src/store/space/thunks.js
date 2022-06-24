@@ -1,6 +1,7 @@
 import axios from "axios";
 import { postsFetched, spaceDetailsFatched } from "../space/slice";
 import { addingNewStories, updateSpace } from "../user/slice";
+import { showMessageWithTimeout } from "../appState/actions";
 //import { getUserWithStoredToken } from "../user/actions";
 
 const API_URL = `http://localhost:4000`;
@@ -42,6 +43,7 @@ export const postNewStory =
         { headers: { Authorization: `Bearer ${token}` } }
       );
       //console.log("response", response.data);
+      dispatch(showMessageWithTimeout("success", false, "It Posts!", 1500));
       dispatch(addingNewStories(response.data));
       //dispatch(getUserWithStoredToken)();
     } catch (e) {
