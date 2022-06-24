@@ -27,3 +27,16 @@ export const fetchSpacewithStory = (spaceId) => async (dispatch, getState) => {
     console.log(e.message);
   }
 };
+
+//Get a created story
+
+export const fetchNewStory = () => async (dispatch, getState) => {
+  try {
+    const response = await axios.get(`${API_URL}/stories`);
+    //console.log("response", response.data);
+    const res = response.data;
+    dispatch(spaceDetailsFatched(res)); // need to create a new action to save all this data
+  } catch (e) {
+    console.log(e.message);
+  }
+};

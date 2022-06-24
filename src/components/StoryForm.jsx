@@ -5,7 +5,7 @@ export default function StoryForm() {
   const [showForm, setShowForm] = useState(false);
   const [name, setName] = useState("");
   const [content, setContent] = useState("");
-  const [image, setImage] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
 
   const onFormSubmit = (e) => {
     e.preventDefault();
@@ -36,9 +36,9 @@ export default function StoryForm() {
               <label>Image url</label>
               <input
                 type="image"
-                value={image}
+                value={imageUrl}
                 alt="st"
-                onChange={(e) => setImage(e.target.value)}
+                onChange={(e) => setImageUrl(e.target.value)}
               />
             </div>
             <button type="submit">Post</button>
