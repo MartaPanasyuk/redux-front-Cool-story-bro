@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { updateNewSpace } from "../store/space/thunks";
 
 export default function EditProfileForm() {
   const dispatch = useDispatch();
@@ -8,11 +9,12 @@ export default function EditProfileForm() {
   const [showForm, setShowForm] = useState(false);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [color, setColor] = useState("");
+  const [background, setBackground] = useState("");
   const [textcolor, setTextcolor] = useState("");
 
   const onFormSubmit = (e) => {
     e.preventDefault();
+    dispatch(updateNewSpace(title, description, background, textcolor));
   };
 
   return (
@@ -40,12 +42,13 @@ export default function EditProfileForm() {
               <label>Background</label>
               <input
                 type="text"
-                value={color}
+                value={background}
                 alt="st"
-                onChange={(e) => setColor(e.target.value)}
+                onChange={(e) => setBackground(e.target.value)}
               />
             </div>
             <div>
+              <label>Text Color</label>
               <input
                 type="text"
                 value={textcolor}

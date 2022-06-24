@@ -30,7 +30,6 @@ export const fetchSpacewithStory = (spaceId) => async (dispatch, getState) => {
 };
 
 //Get a created story
-
 export const postNewStory =
   (name, content, imageUrl) => async (dispatch, getState) => {
     try {
@@ -43,6 +42,29 @@ export const postNewStory =
       );
       //console.log("response", response.data);
       dispatch(addingNewStories(response.data));
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
+
+//Get an updayted Space
+export const updateNewSpace =
+  (title, description, background, textcolor) => async (dispatch, getState) => {
+    try {
+      const spaceId = getState().user.profile.space.id;
+      const token = getState().user.token;
+      const response = await axios.put(
+        `${API_URL}/spaces/${spaceId}`,
+        {
+          title: title,
+          description: description,
+          background: background,
+          textcolor: textcolor,
+        },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      //console.log("response", response.data);
+      dispatch();
     } catch (e) {
       console.log(e.message);
     }
