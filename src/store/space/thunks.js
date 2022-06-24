@@ -1,6 +1,7 @@
 import axios from "axios";
 import { postsFetched, spaceDetailsFatched } from "../space/slice";
 import { addingNewStories, updateSpace } from "../user/slice";
+//import { getUserWithStoredToken } from "../user/actions";
 
 const API_URL = `http://localhost:4000`;
 
@@ -31,17 +32,18 @@ export const fetchSpacewithStory = (spaceId) => async (dispatch, getState) => {
 
 //Get a created story
 export const postNewStory =
-  (name, content, imageUrl) => async (dispatch, getState) => {
+  (name, content, image) => async (dispatch, getState) => {
     try {
       const spaceId = getState().user.profile.space.id;
       const token = getState().user.token;
       const response = await axios.post(
         `${API_URL}/spaces/${spaceId}/story`,
-        { name: name, content: content, imageUrl: imageUrl },
+        { name: name, content: content, imageUrl: image },
         { headers: { Authorization: `Bearer ${token}` } }
       );
       //console.log("response", response.data);
       dispatch(addingNewStories(response.data));
+      //dispatch(getUserWithStoredToken)();
     } catch (e) {
       console.log(e.message);
     }
