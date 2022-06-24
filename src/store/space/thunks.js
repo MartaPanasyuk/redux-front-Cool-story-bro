@@ -35,11 +35,11 @@ export const postNewStory =
     try {
       const spaceId = getState().user.profile.space.id;
       const token = getState().user.token;
-      const response = await axios.post(`${API_URL}/spaces/${spaceId}/story`, {
-        name: name,
-        content: content,
-        imageUrl: imageUrl,
-      });
+      const response = await axios.post(
+        `${API_URL}/spaces/${spaceId}/story`,
+        { name: name, content: content, imageUrl: imageUrl },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
       console.log("response", response);
       //dispatch(spaceDetailsFatched(res)); // need to create a new action to save all this data
     } catch (e) {

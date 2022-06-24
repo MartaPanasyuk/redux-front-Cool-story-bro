@@ -50,6 +50,8 @@ export const userSlice = createSlice({
       const storyArray = state.profile.space.stories;
       state.profile.space.stories = storyArray.filter((s) => s.id !== toDelete);
     },
+
+    addingNewStories,
   },
 });
 
