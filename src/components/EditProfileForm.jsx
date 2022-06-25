@@ -1,20 +1,25 @@
 import React from "react";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateNewSpace } from "../store/space/thunks";
+import { selectMeSpace } from "../store/user/selectors";
 
 export default function EditProfileForm() {
   const dispatch = useDispatch();
+  const spaceDetails = useSelector(selectMeSpace);
+  //console.log(spaceDetails);
 
   const [showForm, setShowForm] = useState(false);
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [background, setBackground] = useState("");
-  const [textcolor, setTextcolor] = useState("");
+  const [title, setTitle] = useState(spaceDetails.title);
+  const [description, setDescription] = useState(spaceDetails.description);
+  const [backgroundColor, setbackgroundColor] = useState(
+    spaceDetails.backgroundColor
+  );
+  const [textcolor, setTextcolor] = useState(spaceDetails.color);
 
   const onFormSubmit = (e) => {
     e.preventDefault();
-    dispatch(updateNewSpace(title, description, background, textcolor));
+    dispatch(updateNewSpace(title, description, backgroundColor, textcolor));
   };
 
   return (
@@ -42,9 +47,8 @@ export default function EditProfileForm() {
               <label>Background</label>
               <input
                 type="color"
-                value={background}
-                alt="st"
-                onChange={(e) => setBackground(e.target.value)}
+                value={spaceDetails.backgroundColor}
+                onChange={(e) => setbackgroundColor(e.target.value)}
               />
             </div>
             <div>
@@ -52,7 +56,6 @@ export default function EditProfileForm() {
               <input
                 type="color"
                 value={textcolor}
-                alt="st"
                 onChange={(e) => setTextcolor(e.target.value)}
               />
             </div>
