@@ -1,6 +1,6 @@
 import axios from "axios";
 import { postsFetched, spaceDetailsFatched } from "../space/slice";
-import { addingNewStories, updateSpace } from "../user/slice";
+import { addingNewStories, updateSpace, addingFavorites } from "../user/slice";
 import { showMessageWithTimeout } from "../appState/actions";
 //import { getUserWithStoredToken } from "../user/actions";
 
@@ -86,9 +86,9 @@ export const addFavStory = (storyId) => async (dispatch, getState) => {
 
       { headers: { Authorization: `Bearer ${token}` } }
     );
-    console.log("response", response.data);
+    //console.log("response", response.data);
 
-    //dispatch(addingNewStories(response.data));
+    dispatch(addingFavorites(response.data));
   } catch (e) {
     console.log(e.message);
   }

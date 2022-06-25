@@ -1,7 +1,11 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { selectUser } from "../store/user/selectors";
+import {
+  selectUser,
+  selectFavoriteStory,
+  selecT,
+} from "../store/user/selectors";
 import { getUserWithStoredToken, deleteStories } from "../store/user/actions";
 import StoryForm from "../components/StoryForm";
 import EditProfileForm from "../components/EditProfileForm";
@@ -9,6 +13,10 @@ import EditProfileForm from "../components/EditProfileForm";
 export default function MySpace() {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
+  const userFav = useSelector(selectFavoriteStory);
+  console.log(userFav);
+  const te = useSelector(selecT);
+  console.log("tt", te);
 
   useEffect(() => {
     dispatch(getUserWithStoredToken());
@@ -21,7 +29,6 @@ export default function MySpace() {
       </div>
     );
 
-  console.log("user", user);
   return (
     <div>
       <h2>Hi {user.name} ! Welcome in Your Space</h2>
@@ -51,6 +58,10 @@ export default function MySpace() {
         ) : (
           <h3>You don't have any Stories</h3>
         )}
+      </div>
+      <div>
+        <h2>Your Favorite Stories</h2>
+        {}
       </div>
     </div>
   );

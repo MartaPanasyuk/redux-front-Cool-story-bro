@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   token: localStorage.getItem("token"),
   profile: null,
+  favorite: [],
 };
 
 /*
@@ -71,6 +72,10 @@ export const userSlice = createSlice({
         stories: state.profile.space.stories,
       };
     },
+
+    addingFavorites: (state, action) => {
+      state.favorite = [...state.favorite, action.payload];
+    },
   },
 });
 
@@ -81,6 +86,7 @@ export const {
   deleteStory,
   addingNewStories,
   updateSpace,
+  addingFavorites,
 } = userSlice.actions;
 
 export default userSlice.reducer;
