@@ -21,7 +21,7 @@ export default function MySpace() {
       </div>
     );
 
-  //console.log("user", user);
+  console.log("user", user);
   return (
     <div>
       <h2>Hi {user.name} ! Welcome in Your Space</h2>

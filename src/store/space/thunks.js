@@ -73,3 +73,23 @@ export const updateNewSpace =
       console.log(e.message);
     }
   };
+
+//Add Storie to the favorite list
+
+export const addFavStory = (storyId) => async (dispatch, getState) => {
+  try {
+    const userId = getState().user.profile.id;
+    const token = getState().user.token;
+    const response = await axios.post(
+      `${API_URL}/stories/favorite`,
+      { userId, storyId },
+
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+    console.log("response", response.data);
+
+    //dispatch(addingNewStories(response.data));
+  } catch (e) {
+    console.log(e.message);
+  }
+};

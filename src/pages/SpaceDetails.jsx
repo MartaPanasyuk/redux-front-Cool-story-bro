@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { selectSpaceDetails } from "../store/space/selectors";
 import { useParams } from "react-router-dom";
-import { fetchSpacewithStory } from "../store/space/thunks";
+import { fetchSpacewithStory, addFavStory } from "../store/space/thunks";
 
 export default function SpaceDetails() {
   const dispatch = useDispatch();
@@ -52,6 +52,12 @@ export default function SpaceDetails() {
               <h2>{story.name}</h2>
               <p>{story.content}</p>
               <img src={story.imageUrl} alt="story" />
+              <button
+                key={story.id}
+                onClick={() => dispatch(addFavStory(story.id))}
+              >
+                Add to Favorites
+              </button>
             </div>
           ))}
         </div>
