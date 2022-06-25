@@ -4,6 +4,6 @@ export const selectUser = (state) => state.user.profile;
 
 export const selectMeSpace = (reduxState) => reduxState.user.profile.space;
 
-export const selectFavoriteStory = (reduxState) => reduxState.user.favorite;
+export const selectAllStory = (reduxState) => reduxState.space.allstory;
 
-export const selecT = (reduxState) => reduxState.space.list;
+export const selectFavoriteStory = (reduxState) => reduxState.user.favorite;

@@ -3,8 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import {
   selectUser,
+  selectAllStory,
   selectFavoriteStory,
-  selecT,
 } from "../store/user/selectors";
 import { getUserWithStoredToken, deleteStories } from "../store/user/actions";
 import StoryForm from "../components/StoryForm";
@@ -15,8 +15,8 @@ export default function MySpace() {
   const user = useSelector(selectUser);
   const userFav = useSelector(selectFavoriteStory);
   console.log(userFav);
-  const te = useSelector(selecT);
-  console.log("tt", te);
+  const te = useSelector(selectAllStory);
+  //console.log("tt", te);
 
   useEffect(() => {
     dispatch(getUserWithStoredToken());
@@ -32,6 +32,7 @@ export default function MySpace() {
   return (
     <div>
       <h2>Hi {user.name} ! Welcome in Your Space</h2>
+      <button onClick={() => console.log("my fav", userFav)}>rknjg</button>
       <StoryForm />
       <h2>Hey, you can edit your space here!</h2>
       <EditProfileForm />

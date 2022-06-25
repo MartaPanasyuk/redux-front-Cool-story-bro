@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   list: [],
   details: null,
+  allstory: [],
 };
 
 export const spaceSlice = createSlice({
@@ -18,9 +19,14 @@ export const spaceSlice = createSlice({
       //action.payload => {} = an object with the stories
       state.details = action.payload;
     },
+
+    savingAllStory: (state, action) => {
+      state.allstory = [...state.allstory, ...action.payload];
+    },
   },
 });
 
-export const { postsFetched, spaceDetailsFatched } = spaceSlice.actions;
+export const { postsFetched, spaceDetailsFatched, savingAllStory } =
+  spaceSlice.actions;
 
 export default spaceSlice.reducer;

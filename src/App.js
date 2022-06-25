@@ -14,7 +14,7 @@ import { getUserWithStoredToken } from "./store/user/actions";
 import HeroBanner from "./components/HeroBanner";
 import HomePage from "./pages/HomePage";
 import SpaceDetails from "./pages/SpaceDetails";
-import { fetchSpaces } from "./store/space/thunks";
+import { fetchSpaces, fetchStories } from "./store/space/thunks";
 import MySpace from "./pages/MySpace";
 const Other = () => (
   <HeroBanner>
@@ -35,6 +35,9 @@ function App() {
     dispatch(fetchSpaces());
   }, [dispatch]);
 
+  useEffect(() => {
+    dispatch(fetchStories());
+  }, [dispatch]);
   return (
     <div className="App">
       <Navigation />

@@ -1,5 +1,9 @@
 import axios from "axios";
-import { postsFetched, spaceDetailsFatched } from "../space/slice";
+import {
+  postsFetched,
+  spaceDetailsFatched,
+  savingAllStory,
+} from "../space/slice";
 import { addingNewStories, updateSpace, addingFavorites } from "../user/slice";
 import { showMessageWithTimeout } from "../appState/actions";
 //import { getUserWithStoredToken } from "../user/actions";
@@ -89,6 +93,19 @@ export const addFavStory = (storyId) => async (dispatch, getState) => {
     //console.log("response", response.data);
 
     dispatch(addingFavorites(response.data));
+  } catch (e) {
+    console.log(e.message);
+  }
+};
+
+//All  stories
+
+export const fetchStories = () => async (dispatch, getState) => {
+  try {
+    const response = await axios.get(`${API_URL}/stories`);
+    //console.log("response", response.data);
+    const res = response.data;
+    dispatch(savingAllStory(res));
   } catch (e) {
     console.log(e.message);
   }
