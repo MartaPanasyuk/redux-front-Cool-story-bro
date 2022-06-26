@@ -38,6 +38,7 @@ function App() {
   useEffect(() => {
     dispatch(fetchStories());
   }, [dispatch]);
+
   return (
     <div className="App">
       <Navigation />

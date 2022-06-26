@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   token: localStorage.getItem("token"),
   profile: null,
-  favorite: [],
+  favorites: null,
 };
 
 /*
@@ -73,8 +73,8 @@ export const userSlice = createSlice({
       };
     },
 
-    addingFavorites: (state, action) => {
-      state.favorite = [...state.favorite, action.payload];
+    updayteFav: (state, action) => {
+      state.favorites = action.payload;
     },
   },
 });
@@ -86,7 +86,7 @@ export const {
   deleteStory,
   addingNewStories,
   updateSpace,
-  addingFavorites,
+  updayteFav,
 } = userSlice.actions;
 
 export default userSlice.reducer;

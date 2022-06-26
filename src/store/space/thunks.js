@@ -1,10 +1,6 @@
 import axios from "axios";
-import {
-  postsFetched,
-  spaceDetailsFatched,
-  savingAllStory,
-} from "../space/slice";
-import { addingNewStories, updateSpace, addingFavorites } from "../user/slice";
+import { postsFetched, spaceDetailsFatched, getAllStory } from "../space/slice";
+import { addingNewStories, updateSpace, updayteFav } from "../user/slice";
 import { showMessageWithTimeout } from "../appState/actions";
 //import { getUserWithStoredToken } from "../user/actions";
 
@@ -79,7 +75,6 @@ export const updateNewSpace =
   };
 
 //Add Storie to the favorite list
-
 export const addFavStory = (storyId) => async (dispatch, getState) => {
   try {
     const userId = getState().user.profile.id;
@@ -91,21 +86,32 @@ export const addFavStory = (storyId) => async (dispatch, getState) => {
       { headers: { Authorization: `Bearer ${token}` } }
     );
     //console.log("response", response.data);
+    //  dispatch(addingFavorites(response.data));
+  } catch (e) {
+    console.log(e.message);
+  }
+};
 
-    dispatch(addingFavorites(response.data));
+//Get all Favorites by User
+export const getFavoStr = () => async (dispatch, getState) => {
+  try {
+    const userId = getState().user.profile.id;
+    const response = await axios.get(`${API_URL}/stories/favorite/${userId}`);
+    //console.log("response favorite", response.data);
+    const res = response.data;
+    dispatch(updayteFav(res));
   } catch (e) {
     console.log(e.message);
   }
 };
 
 //All  stories
-
 export const fetchStories = () => async (dispatch, getState) => {
   try {
     const response = await axios.get(`${API_URL}/stories`);
-    //console.log("response", response.data);
+    //console.log("response", response);
     const res = response.data;
-    dispatch(savingAllStory(res));
+    dispatch(getAllStory(res));
   } catch (e) {
     console.log(e.message);
   }
